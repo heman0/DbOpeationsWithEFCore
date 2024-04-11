@@ -4,6 +4,7 @@ using DbOpeationsWithEFCore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DbOpeationsWithEFCore.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240411094113_AddedTwoNewTables")]
+    partial class AddedTwoNewTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,28 +108,6 @@ namespace DbOpeationsWithEFCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tbl_Currencies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Title = "INR"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Title = "Dollar"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Title = "Euro"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Title = "Dinnar"
-                        });
                 });
 
             modelBuilder.Entity("DbOpeationsWithEFCore.Data.Languages", b =>
@@ -148,32 +129,6 @@ namespace DbOpeationsWithEFCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tbl_Languages");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Indian Hindi",
-                            Title = "Hindi"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "UK English",
-                            Title = "English"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Punjab's language",
-                            Title = "Punjabi"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Description = "Meerut's urdu",
-                            Title = "Urdu"
-                        });
                 });
 
             modelBuilder.Entity("DbOpeationsWithEFCore.Data.Book", b =>
