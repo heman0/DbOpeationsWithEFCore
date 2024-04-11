@@ -9,5 +9,7 @@ namespace DbOpeationsWithEFCore.Data
             
 
         }
+        public DbSet<Book> tbl_Books { get; set; }
+        public DbSet<Languages> tbl_Languages { get; set; }
     }
 }
