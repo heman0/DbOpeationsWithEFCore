@@ -56,5 +56,18 @@ namespace DbOpeationsWithEFCore.Controllers
 
             return Ok(result);
         }
+        [HttpPost("all/specificColumns")]
+        public async Task<IActionResult> GetSpecificColumnsInCurrencyAsync()
+        {
+            // Get only specific columns 
+            var result = await (from currencies in context.tbl_Currencies
+                                select new
+                                {
+                                    CurrencyID=currencies.Id,
+                                    CurrencyTitle=currencies.Title
+                                }).ToListAsync();
+
+            return Ok(result);
+        }
     } 
 }
