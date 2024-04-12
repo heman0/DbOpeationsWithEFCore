@@ -29,13 +29,22 @@ namespace DbOpeationsWithEFCore.Controllers
             var result = await context.tbl_Languages.FindAsync(id);
             return Ok(result);
         }
+        //[HttpGet("{name}")]
+        //public async Task<IActionResult> GetLanguageByNameAndDescriptionAsync(string name,[FromQuery] string? description)
+        //{
+        //    // Get one record using Multiple(optional/required) Parameters or Paths
+        //    var result = await context.tbl_Languages.
+        //        FirstOrDefaultAsync
+        //        (x => x.Title == name&&(string.IsNullOrEmpty(description)|| x.Description==description));
+        //    return Ok(result);
+        //}
         [HttpGet("{name}")]
-        public async Task<IActionResult> GetLanguageByNameAndDescriptionAsync(string name,[FromQuery] string? description)
+        public async Task<IActionResult> GetDuplicateRecordsAlsoAsync(string name,[FromQuery] string? description)
         {
-            // Get one record using Multiple(optional/required) Parameters or Paths
-            var result = await context.tbl_Languages.
-                FirstOrDefaultAsync
-                (x => x.Title == name&&(string.IsNullOrEmpty(description)|| x.Description==description));
+
+            // Get Duplicate records in results
+            var result = await context.tbl_Languages.Where
+            (x => x.Title == name && (string.IsNullOrEmpty(description) || x.Description == description)).ToListAsync();
             return Ok(result);
         }
     }
