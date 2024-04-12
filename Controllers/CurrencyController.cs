@@ -48,5 +48,13 @@ namespace DbOpeationsWithEFCore.Controllers
 
             return Ok(result);
         }
+        [HttpPost("all")]
+        public async Task<IActionResult> GetCurrencyByMultipleIdsAsync([FromBody] List<int> ids)
+        {
+            // Get records using Multiple IDs
+            var result = await context.tbl_Currencies.Where(x => ids.Contains(x.Id)).ToListAsync();
+
+            return Ok(result);
+        }
     } 
 }
